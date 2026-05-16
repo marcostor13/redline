@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import IndustryCard from '../components/IndustryCard.astro';
+import CTASection from '../components/CTASection.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+
+const services = [
+  { title: 'Pallet Rack Installation', shortDesc: 'New pallet rack systems installed right the first time — from single bays to 200K sq ft full builds.', href: '/services/pallet-rack-installation/', icon: '🏗️', featured: true },
+  { title: 'Warehouse Relocation', shortDesc: 'Full-service rack tear-down, transport, and reinstallation — minimizing downtime from day one.', href: '/services/warehouse-relocation/', icon: '🚛' },
+  { title: 'Rack Repair & Modifications', shortDesc: 'ANSI-compliant repairs, upright replacement, and system reconfiguration without a full tear-down.', href: '/services/rack-repair-modifications/', icon: '🔧' },
+  { title: 'Mezzanine Installation', shortDesc: 'Structural mezzanine platforms that double your usable space without expanding your footprint.', href: '/services/mezzanine-installation/', icon: '🏢' },
+  { title: 'Conveyor Systems', shortDesc: 'Installation and integration of conveyor lines for high-throughput distribution and fulfillment.', href: '/services/conveyor-systems/', icon: '⚙️' },
+  { title: 'Tear-Down & Reinstallation', shortDesc: 'Disassemble existing rack systems safely and reinstall at new locations — nationwide.', href: '/services/tear-down-reinstallation/', icon: '🔄' },
+  { title: 'Material Handling Systems', shortDesc: 'End-to-end material flow design and installation for optimized warehouse operations.', href: '/services/material-handling-systems/', icon: '📦' },
+];
+
+const industries = [
+  { title: 'Warehousing', desc: 'High-density storage for 3PL and general warehousing operations.', href: '/industries/warehousing/', icon: '🏭' },
+  { title: 'Distribution Centers', desc: 'Fast-moving inventory systems designed for throughput at scale.', href: '/industries/distribution-centers/', icon: '🚚' },
+  { title: 'Manufacturing', desc: 'Work-in-process and raw material storage integrated into production floors.', href: '/industries/manufacturing/', icon: '⚙️' },
+  { title: 'Logistics', desc: '3PL and freight hub installations for flexible, multi-client storage.', href: '/industries/logistics/', icon: '🗺️' },
+  { title: 'Industrial Storage', desc: 'Heavy-duty racking for oversized and irregularly shaped materials.', href: '/industries/industrial-storage/', icon: '🔩' },
+  { title: 'Food Distribution', desc: 'Cold storage and food-grade racking — USDA and FDA compliant.', href: '/industries/food-distribution/', icon: '❄️' },
+];
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://redlineinstallers.com/#website',
+  name: 'Redline Installers LLC',
+  url: 'https://redlineinstallers.com',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://redlineinstallers.com/?s={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://redlineinstallers.com/#organization',
+  name: 'Redline Installers LLC',
+  url: 'https://redlineinstallers.com',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://redlineinstallers.com/logo.jpg',
+    width: 400,
+    height: 400,
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+1-630-363-7251',
+    contactType: 'customer service',
+    email: 'jk@redlineinstallers.com',
+    areaServed: 'US',
+    availableLanguage: 'English',
+    hoursAvailable: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '18:00',
+    },
+  },
+};
+---
+
+<BaseLayout
+  title="Professional Warehouse & Pallet Rack Installation | Redline Installers LLC"
+  description="Warehouse and pallet rack installation specialists serving Illinois, Midwest, and all 50 states. 34+ years experience. Free site assessments. Call 630-363-7251."
+  canonical="https://redlineinstallers.com/"
+  schema={[websiteSchema, organizationSchema]}
+>
+  <Hero
+    headline="Warehouse & Pallet Rack Installation Specialists"
+    subheadline="Serving Illinois, the Midwest, and nationwide since 1990. From single-bay repairs to 200,000 sq ft full builds — installed right the first time."
+    backgroundImage="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=1080&fit=crop&q=80"
+  />
+
+  <!-- Services section -->
+  <section class="home-services">
+    <div class="container">
+      <div class="home-section-header" data-animate>
+        <p class="text-eyebrow">Our Services</p>
+        <h2 class="text-headline-lg section-heading" style="color: var(--color-on-surface); margin-top: 12px;">
+          Warehouse Installation Services
+        </h2>
+        <p class="text-body-lg" style="max-width: 560px; margin-top: 24px;">
+          Specialized crews for every warehouse and material handling system — no subcontractors, OSHA-compliant, nationwide.
+        </p>
+      </div>
+
+      <div class="services-grid" data-animate-stagger>
+        {services.map((svc, i) => (
+          <ServiceCard
+            title={svc.title}
+            description={svc.shortDesc}
+            href={svc.href}
+            icon={svc.icon}
+            featured={svc.featured ?? false}
+            num={String(i + 1).padStart(2, '0')}
+          />
+        ))}
+      </div>
+
+      <div class="services-cta">
+        <a href="/services/" class="btn-outline">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <WhyChooseUs />
+
+  <!-- Industries section -->
+  <section class="home-industries">
+    <div class="container">
+      <div class="home-section-header" data-animate>
+        <p class="text-eyebrow">Industries We Serve</p>
+        <h2 class="text-headline-lg section-heading" style="color: var(--color-on-surface); margin-top: 12px;">
+          Built for Industrial Operations
+        </h2>
+        <p class="text-body-lg" style="max-width: 560px; margin-top: 24px;">
+          Cold storage, high-throughput distribution, heavy manufacturing — crews trained for each industry's specific requirements.
+        </p>
+      </div>
+
+      <div class="industries-grid" data-animate-stagger>
+        {industries.map((ind, i) => (
+          <IndustryCard
+            title={ind.title}
+            description={ind.desc}
+            href={ind.href}
+            icon={ind.icon}
+            num={String(i + 1).padStart(2, '0')}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProjectsSection />
+
+  <!-- Service area strip -->
+  <section class="home-area">
+    <div class="container">
+      <div class="home-area-inner" data-animate>
+        <div>
+          <p class="text-eyebrow" style="margin-bottom: 12px;">Service Area</p>
+          <h2 class="text-headline-md" style="color: var(--color-on-surface);">Illinois, Midwest & All 50 States</h2>
+          <p class="text-body-md" style="margin-top: 12px; max-width: 420px;">
+            Based in Chicago. Travel projects welcome nationwide — we coordinate logistics to minimize your downtime.
+          </p>
+        </div>
+        <a href="/service-area/" class="btn-outline">View Service Area</a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+.home-services {
+  padding-block: 100px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+.home-section-header {
+  margin-bottom: 56px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+}
+@media (min-width: 640px)  { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Override ServiceCard border so grid creates seamless lines */
+.services-grid :global(.svc-card) {
+  border-top: none;
+  border-left: none;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.services-cta {
+  margin-top: 48px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.home-industries {
+  padding-block: 100px;
+  background: var(--color-surface-alt);
+  border-top: 1px solid var(--color-border);
+}
+.industries-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+}
+@media (min-width: 640px)  { .industries-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .industries-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.industries-grid :global(.ind-card) {
+  border-top: none;
+  border-left: none;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.home-area {
+  padding-block: 72px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.home-area-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+}
+@media (min-width: 1024px) {
+  .home-area-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 64px;
+  }
+}
+</style>

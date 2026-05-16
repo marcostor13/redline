@@ -1,0 +1,266 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import { projects } from '../../data/projects';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://redlineinstallers.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://redlineinstallers.com/projects/' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Warehouse Installation Projects | Redline Installers LLC"
+  description="Case studies from Redline Installers — pallet rack builds, warehouse relocations, mezzanine installations, conveyor systems, and material handling projects across the Midwest and nationwide."
+  canonical="https://redlineinstallers.com/projects/"
+  schema={breadcrumbSchema}
+>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="hero-inner">
+        <p class="text-eyebrow" style="color: rgba(255,255,255,0.5);">Selected Projects</p>
+        <h1 class="text-display text-white hero-heading">Work We&apos;re Proud Of</h1>
+        <p class="hero-sub">
+          Real projects. Real metrics. Every case study below is a job Redline Installers completed with in-house crews — no subcontractors, no shortcuts.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">Projects</li>
+      </ol>
+    </div>
+  </nav>
+
+  <section class="projects-page-section">
+    <div class="container">
+      <div class="projects-page-grid">
+        {projects.map((p) => (
+          <a href={`/projects/${p.slug}/`} class="proj-card">
+
+            <div class="proj-img" style={`background-image: url('${p.img}')`}>
+              <div class="proj-img-overlay">
+                <span class="proj-year">{p.year}</span>
+              </div>
+            </div>
+
+            <div class="proj-body">
+              <span class="proj-service">{p.service}</span>
+              <h2 class="proj-title">{p.title}</h2>
+              <p class="proj-location">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                {p.location}
+              </p>
+              <p class="proj-scope">{p.scope}</p>
+
+              <div class="proj-metrics">
+                {p.metrics.map((m) => (
+                  <div class="proj-metric">
+                    <span class="pm-value">{m.value}</span>
+                    <span class="pm-label">{m.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <span class="proj-cta">
+                Read Case Study
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+
+</BaseLayout>
+
+<style>
+.page-hero {
+  background: linear-gradient(135deg, #0a0e13 0%, #1a2129 60%, #2a323d 100%);
+  padding-block: 80px 72px;
+}
+.hero-inner { max-width: 680px; }
+.hero-heading { margin-top: 12px; }
+.hero-sub {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-steel-300);
+  margin-top: 20px;
+  max-width: 560px;
+}
+
+.breadcrumb-bar {
+  background-color: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: 12px;
+}
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0; padding: 0;
+  font-size: 13px;
+  color: var(--color-on-surface-muted);
+}
+.breadcrumb-list a {
+  color: var(--color-on-surface-muted);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.breadcrumb-list a:hover { color: var(--color-primary); }
+
+.projects-page-section {
+  padding-block: 80px;
+  background-color: var(--color-surface);
+}
+
+.projects-page-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+}
+@media (min-width: 640px)  { .projects-page-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .projects-page-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.proj-card {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 200ms;
+}
+.proj-card:hover { border-color: var(--color-primary); z-index: 1; position: relative; }
+
+.proj-img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background-color: var(--color-steel-800);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  transition: background-size 400ms ease;
+}
+.proj-card:hover .proj-img { background-size: 108%; }
+
+.proj-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,14,19,0.55) 0%, rgba(10,14,19,0) 50%);
+  display: flex;
+  align-items: flex-end;
+  padding: 14px 18px;
+}
+.proj-year {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.7);
+}
+
+.proj-body {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.proj-service {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.proj-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--color-on-surface);
+  margin-bottom: 8px;
+}
+
+.proj-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+  margin-bottom: 12px;
+}
+
+.proj-scope {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-on-surface-muted);
+  margin: 0 0 20px;
+  flex: 1;
+}
+
+.proj-metrics {
+  display: flex;
+  gap: 20px;
+  padding-block: 14px;
+  border-top: 1px solid var(--color-border);
+  margin-bottom: 18px;
+}
+.proj-metric { display: flex; flex-direction: column; gap: 2px; }
+.pm-value {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.pm-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+}
+
+.proj-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+  transition: color 150ms, gap 150ms;
+}
+.proj-card:hover .proj-cta { color: var(--color-primary); gap: 10px; }
+</style>

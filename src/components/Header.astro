@@ -1,0 +1,473 @@
+---
+const navLinks = [
+  { href: '/services/', label: 'Services' },
+  { href: '/industries/', label: 'Industries' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/service-area/', label: 'Service Area' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header" id="site-header">
+  <div class="header-accent"></div>
+  <div class="container">
+    <div class="header-inner">
+
+      <a href="/" class="site-logo" aria-label="Redline Installers — Home">
+        <img src="/logo.jpg" alt="Redline Installers" class="site-logo-img" />
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class={`nav-link ${currentPath.startsWith(link.href) ? 'nav-link-active' : ''}`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+16303637251" class="header-phone" aria-label="Call Redline Installers">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>630-363-7251</span>
+        </a>
+        <a href="/quote/" class="header-cta" aria-label="Request a free quote">
+          <span>Request a Quote</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <button
+          id="mobile-menu-toggle"
+          class="burger-btn"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="burger-line burger-top"></span>
+          <span class="burger-line burger-mid"></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="mobile-nav" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+    <div class="mobile-nav-inner container">
+      <nav class="mobile-links" aria-label="Mobile navigation links">
+        {navLinks.map((link, i) => (
+          <a
+            href={link.href}
+            class={`mobile-link ${currentPath.startsWith(link.href) ? 'mobile-link-active' : ''}`}
+            style={`--i: ${i}`}
+          >
+            <span class="mobile-link-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="mobile-link-label">{link.label}</span>
+            <svg class="mobile-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        ))}
+      </nav>
+      <div class="mobile-ctas">
+        <a href="tel:+16303637251" class="mobile-cta-call">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          Call 630-363-7251
+        </a>
+        <a href="/quote/" class="mobile-cta-quote">
+          Request a Quote
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="mobile-backdrop" id="mobile-backdrop"></div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    const header = document.getElementById('site-header');
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('mobile-backdrop');
+
+    if (!header || !toggle || !menu) return;
+
+    // Scroll shrink
+    const onScroll = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 24);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu toggle
+    let isOpen = false;
+    const openMenu = () => {
+      isOpen = true;
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeMenu = () => {
+      isOpen = false;
+      menu.classList.remove('is-open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+
+    toggle.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+    backdrop?.addEventListener('click', closeMenu);
+
+    // Close on nav link click
+    menu.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && isOpen) closeMenu(); };
+    document.addEventListener('keydown', onKey);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('keydown', onKey);
+    };
+  }
+
+  document.addEventListener('astro:page-load', initHeader);
+</script>
+
+<style>
+/* ── Header shell ─────────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-surface);
+  view-transition-name: site-header;
+  transition: border-color 300ms, box-shadow 300ms;
+  border-bottom: 1px solid transparent;
+  animation: header-enter 500ms cubic-bezier(0.22,1,0.36,1) both;
+}
+.site-header.is-scrolled {
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 1px 24px rgba(10,14,19,0.07);
+}
+
+@keyframes header-enter {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* Red top accent */
+.header-accent {
+  height: 3px;
+  background-color: var(--color-primary);
+  width: 100%;
+}
+
+/* ── Inner layout ─────────────────────────────────────────── */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 32px;
+  transition: height 300ms cubic-bezier(0.22,1,0.36,1);
+}
+.site-header.is-scrolled .header-inner { height: 56px; }
+
+/* ── Logo ─────────────────────────────────────────────────── */
+.site-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.site-logo-img {
+  height: 34px;
+  width: auto;
+  display: block;
+  transition: height 300ms cubic-bezier(0.22,1,0.36,1);
+}
+.site-header.is-scrolled .site-logo-img { height: 30px; }
+
+/* ── Desktop nav ──────────────────────────────────────────── */
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+@media (min-width: 1024px) { .desktop-nav { display: flex; } }
+
+.nav-link {
+  position: relative;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-on-surface-muted);
+  text-decoration: none;
+  transition: color 200ms;
+  white-space: nowrap;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 12px;
+  right: 12px;
+  height: 1.5px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 280ms cubic-bezier(0.22,1,0.36,1);
+}
+.nav-link:hover { color: var(--color-on-surface); }
+.nav-link:hover::after { transform: scaleX(1); }
+.nav-link-active { color: var(--color-on-surface); }
+.nav-link-active::after { transform: scaleX(1); }
+
+/* ── Header actions ───────────────────────────────────────── */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.header-phone {
+  display: none;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-on-surface-muted);
+  text-decoration: none;
+  transition: color 200ms;
+}
+.header-phone:hover { color: var(--color-primary); }
+@media (min-width: 1024px) { .header-phone { display: flex; } }
+
+.header-cta {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: var(--color-primary);
+  text-decoration: none;
+  transition: background-color 200ms, gap 200ms;
+}
+.header-cta:hover { background-color: #9a0010; gap: 12px; }
+@media (min-width: 768px) { .header-cta { display: flex; } }
+
+/* ── Burger button ────────────────────────────────────────── */
+.burger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+}
+@media (min-width: 1024px) { .burger-btn { display: none; } }
+
+.burger-line {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background-color: var(--color-on-surface);
+  transition: transform 300ms cubic-bezier(0.22,1,0.36,1), opacity 200ms;
+  transform-origin: center;
+}
+.burger-btn.is-open .burger-top {
+  transform: translateY(3.25px) rotate(45deg);
+}
+.burger-btn.is-open .burger-mid {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+/* ── Mobile menu ──────────────────────────────────────────── */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 49;
+  pointer-events: none;
+}
+
+.mobile-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10,14,19,0.6);
+  opacity: 0;
+  transition: opacity 350ms ease;
+  pointer-events: none;
+}
+
+.mobile-nav-inner {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-steel-950);
+  padding-block: 32px 40px;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 400ms cubic-bezier(0.22,1,0.36,1), opacity 300ms ease;
+  pointer-events: none;
+}
+
+.mobile-nav.is-open {
+  pointer-events: auto;
+}
+.mobile-nav.is-open .mobile-nav-inner {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-nav.is-open .mobile-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Mobile links ─────────────────────────────────────────── */
+.mobile-links {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 32px;
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-decoration: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: color 200ms;
+  transform: translateX(-12px);
+  opacity: 0;
+}
+.mobile-nav.is-open .mobile-link {
+  animation: mobile-link-in 380ms cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: calc(60ms + var(--i) * 40ms);
+}
+@keyframes mobile-link-in {
+  from { transform: translateX(-12px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+.mobile-link:hover { color: #ffffff; }
+.mobile-link-active { color: var(--color-primary) !important; }
+
+.mobile-link-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 200;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+  min-width: 20px;
+}
+.mobile-link-label {
+  flex: 1;
+}
+.mobile-link-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 200ms, transform 200ms;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+.mobile-link:hover .mobile-link-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+.mobile-link-active .mobile-link-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Mobile CTAs ──────────────────────────────────────────── */
+.mobile-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 480px) {
+  .mobile-ctas { flex-direction: row; }
+}
+
+.mobile-cta-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.2);
+  text-decoration: none;
+  flex: 1;
+  transition: color 200ms, border-color 200ms;
+}
+.mobile-cta-call:hover { color: #ffffff; border-color: rgba(255,255,255,0.5); }
+
+.mobile-cta-quote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: var(--color-primary);
+  text-decoration: none;
+  flex: 1;
+  transition: background-color 200ms, gap 200ms;
+}
+.mobile-cta-quote:hover { background-color: #9a0010; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header { animation: none; }
+  .header-inner, .site-logo-img { transition: none; }
+  .nav-link::after { transition: none; }
+  .burger-line { transition: none; }
+  .mobile-nav-inner, .mobile-backdrop, .mobile-link { transition: none; animation: none !important; }
+  .header-cta { transition: none; }
+}
+</style>

@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const serviceAreaSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Pallet Rack Installation & Warehouse Solutions — Illinois, Midwest & Nationwide',
+  provider: {
+    '@type': 'LocalBusiness',
+    '@id': 'https://redlineinstallers.com/#business',
+    name: 'Redline Installers LLC',
+    telephone: '+1-630-363-7251',
+    url: 'https://redlineinstallers.com',
+  },
+  areaServed: [
+    { '@type': 'State', name: 'Illinois' },
+    { '@type': 'State', name: 'Indiana' },
+    { '@type': 'State', name: 'Wisconsin' },
+    { '@type': 'State', name: 'Michigan' },
+    { '@type': 'State', name: 'Ohio' },
+    { '@type': 'State', name: 'Iowa' },
+    { '@type': 'State', name: 'Missouri' },
+    { '@type': 'State', name: 'Minnesota' },
+    { '@type': 'State', name: 'Kansas' },
+    { '@type': 'Country', name: 'United States' },
+  ],
+  serviceType: 'Pallet Rack Installation',
+  description: 'Professional pallet rack installation, warehouse relocation, and material handling system installation serving Illinois, the Midwest, and all 50 states.',
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://redlineinstallers.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Service Area', item: 'https://redlineinstallers.com/service-area/' },
+  ],
+};
+
+const illinoisCities = [
+  'Chicago', 'Rockford', 'Springfield', 'Peoria', 'Aurora',
+  'Joliet', 'Naperville', 'Elgin', 'Waukegan', 'Cicero',
+  'Champaign', 'Bloomington', 'Decatur', 'Schaumburg', 'Bolingbrook',
+  'Palatine', 'Des Plaines', 'Orland Park', 'Tinley Park', 'Evanston',
+];
+
+const midwestStates = [
+  {
+    name: 'Indiana',
+    abbr: 'IN',
+    cities: ['Indianapolis', 'Fort Wayne', 'Evansville', 'South Bend', 'Hammond'],
+    note: 'Short drive from Chicago. Same-day mobilization available for emergency rack repairs.',
+  },
+  {
+    name: 'Wisconsin',
+    abbr: 'WI',
+    cities: ['Milwaukee', 'Madison', 'Green Bay', 'Kenosha', 'Racine'],
+    note: 'Regular project travel. Milwaukee metro served as frequently as Chicago suburbs.',
+  },
+  {
+    name: 'Michigan',
+    abbr: 'MI',
+    cities: ['Detroit', 'Grand Rapids', 'Warren', 'Sterling Heights', 'Lansing'],
+    note: 'Strong distribution corridor. Experience with automotive supply chain facilities.',
+  },
+  {
+    name: 'Ohio',
+    abbr: 'OH',
+    cities: ['Columbus', 'Cleveland', 'Cincinnati', 'Toledo', 'Akron'],
+    note: 'Major 3PL and e-commerce fulfillment hub. Projects coordinated with minimal lead time.',
+  },
+  {
+    name: 'Iowa',
+    abbr: 'IA',
+    cities: ['Des Moines', 'Cedar Rapids', 'Davenport', 'Sioux City', 'Iowa City'],
+    note: 'Agricultural and food distribution sector experience throughout the state.',
+  },
+  {
+    name: 'Missouri',
+    abbr: 'MO',
+    cities: ['St. Louis', 'Kansas City', 'Springfield', 'Columbia', 'Independence'],
+    note: 'Central US logistics hub. St. Louis and Kansas City metro areas served regularly.',
+  },
+  {
+    name: 'Minnesota',
+    abbr: 'MN',
+    cities: ['Minneapolis', 'Saint Paul', 'Rochester', 'Duluth', 'Bloomington'],
+    note: 'Cold storage and food distribution specialist knowledge applies throughout the state.',
+  },
+  {
+    name: 'Kansas',
+    abbr: 'KS',
+    cities: ['Wichita', 'Overland Park', 'Kansas City', 'Topeka', 'Olathe'],
+    note: 'Manufacturing and industrial storage projects across the Kansas City metro area.',
+  },
+];
+---
+
+<BaseLayout
+  title="Pallet Rack Installation Service Area — Illinois, Midwest & Nationwide | Redline Installers"
+  description="Redline Installers serves Illinois, Indiana, Wisconsin, Michigan, Ohio, Iowa, Missouri, and all 50 states for pallet rack installation and warehouse services. Based in Chicago, IL."
+  canonical="https://redlineinstallers.com/service-area/"
+  schema={[serviceAreaSchema, breadcrumbSchema]}
+>
+
+  <Hero
+    headline="Pallet Rack Installation & Warehouse Solutions — Illinois, Midwest & Nationwide"
+    subheadline="Based in Chicago. Primary market is Illinois and the Midwest. Travel projects welcome across all 50 states — we coordinate logistics so your project stays on schedule."
+    compact={true}
+  />
+
+  <!-- Illinois Primary Market -->
+  <section class="py-20" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="max-w-2xl mb-10">
+        <span class="text-label-sm block mb-3" style="color: var(--color-primary);">Primary Market</span>
+        <h2 class="text-headline-lg mb-4" style="color: var(--color-on-surface); font-family: var(--font-display);">
+          Illinois Pallet Rack Installation
+        </h2>
+        <p class="text-body-lg" style="color: var(--color-on-surface-muted);">
+          Illinois is our home base. With crews stationed in the Chicago metro area, we offer the fastest mobilization and most competitive pricing for Illinois projects. From the Chicago Loop to downstate Springfield, no Illinois job is too far.
+        </p>
+      </div>
+
+      <div class="card card-featured mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-headline-md mb-4" style="color: var(--color-on-surface); font-family: var(--font-display);">
+              Illinois Cities We Serve
+            </h3>
+            <div class="grid grid-cols-2 gap-2">
+              {illinoisCities.map((city) => (
+                <div class="flex items-center gap-2 text-body-md" style="color: var(--color-on-surface-muted);">
+                  <span style="color: var(--color-primary); font-weight: 700;">&#8250;</span>
+                  {city}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 class="text-headline-md mb-4" style="color: var(--color-on-surface); font-family: var(--font-display);">
+              Illinois Advantage
+            </h3>
+            <div class="grid grid-cols-1 gap-3">
+              {[
+                'Same-day site assessment available in Chicagoland',
+                'Fastest quote turnaround for IL projects',
+                'Emergency rack repair response available',
+                'No travel surcharge for Illinois locations',
+                'Relationships with IL permit offices',
+                'Statewide coverage — Chicago to Cairo',
+              ].map((point) => (
+                <div class="flex items-start gap-2 text-body-md" style="color: var(--color-on-surface-muted);">
+                  <span style="color: var(--color-primary); font-weight: 700; flex-shrink: 0;">&#10003;</span>
+                  {point}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card text-center">
+          <div style="font-family: var(--font-display); font-size: 40px; font-weight: 800; color: var(--color-primary);">Chicago</div>
+          <p class="text-body-md mt-2" style="color: var(--color-on-surface-muted);">Metro area and all suburbs. O'Hare and south-side industrial corridors.</p>
+        </div>
+        <div class="card text-center">
+          <div style="font-family: var(--font-display); font-size: 40px; font-weight: 800; color: var(--color-primary);">Rockford</div>
+          <p class="text-body-md mt-2" style="color: var(--color-on-surface-muted);">Northwest IL manufacturing and industrial storage projects.</p>
+        </div>
+        <div class="card text-center">
+          <div style="font-family: var(--font-display); font-size: 40px; font-weight: 800; color: var(--color-primary);">Springfield</div>
+          <p class="text-body-md mt-2" style="color: var(--color-on-surface-muted);">Central IL distribution and government facility installations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Midwest States -->
+  <section class="py-20" style="background-color: var(--color-steel-100);">
+    <div class="container">
+      <div class="max-w-2xl mb-12">
+        <span class="text-label-sm block mb-3" style="color: var(--color-primary);">Midwest Coverage</span>
+        <h2 class="text-headline-lg mb-4" style="color: var(--color-on-surface); font-family: var(--font-display);">
+          Midwest Warehouse Installation
+        </h2>
+        <p class="text-body-lg" style="color: var(--color-on-surface-muted);">
+          Our crews travel regularly to Indiana, Wisconsin, Michigan, Ohio, Iowa, Missouri, Minnesota, and Kansas. Midwest projects are coordinated from our Chicago base with minimal lead time and no disruption to your operations.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {midwestStates.map((state) => (
+          <div class="card">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="chip" style="background-color: var(--color-primary); color: #ffffff; font-family: var(--font-display); font-weight: 700; font-size: 14px; padding: 4px 10px; border-radius: 4px;">
+                {state.abbr}
+              </span>
+              <h3 class="text-headline-md" style="color: var(--color-on-surface); font-family: var(--font-display);">
+                {state.name}
+              </h3>
+            </div>
+            <p class="text-body-md mb-3" style="color: var(--color-on-surface-muted);">{state.note}</p>
+            <div class="flex flex-wrap gap-2">
+              {state.cities.map((city) => (
+                <span class="text-label-sm px-2 py-1" style="background-color: var(--color-steel-100); color: var(--color-on-surface-muted); border-radius: 4px;">
+                  {city}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Nationwide -->
+  <section class="py-20" style="background-color: var(--color-steel-950);">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="text-label-sm block mb-3" style="color: var(--color-primary-container);">All 50 States</span>
+          <h2 class="text-headline-lg mb-6" style="color: #ffffff; font-family: var(--font-display);">
+            Nationwide Pallet Rack Installation
+          </h2>
+          <p class="text-body-lg mb-5" style="color: var(--color-steel-300);">
+            Travel projects welcome across all 50 states. We coordinate logistics so your project stays on schedule regardless of location. For large-scale builds, multi-site rollouts, or complex relocations, distance is not a barrier.
+          </p>
+          <p class="text-body-lg mb-8" style="color: var(--color-steel-300);">
+            We've completed installations in distribution centers, manufacturing plants, and logistics hubs from coast to coast. Our team handles travel, lodging, and equipment coordination so you can focus on your operations.
+          </p>
+          <a href="/contact/" class="btn-primary">
+            Request a Quote for Your Location
+          </a>
+        </div>
+        <div class="grid grid-cols-1 gap-4">
+          {[
+            { stat: 'All 50', label: 'States Available for Travel Projects' },
+            { stat: '4 hrs', label: 'Quote Response Regardless of Location' },
+            { stat: '1990', label: 'Year We Started — Nationwide from Day One' },
+            { stat: '0', label: 'Subcontractors — Same Vetted Crew Everywhere' },
+          ].map((item) => (
+            <div class="flex items-center gap-6 py-4" style="border-bottom: 1px solid var(--color-steel-700);">
+              <div style="font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--color-primary-container); min-width: 80px; text-align: right;">
+                {item.stat}
+              </div>
+              <div class="text-body-md" style="color: var(--color-steel-300);">{item.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote CTA -->
+  <CTASection
+    headline="Get a Free Quote for Your Location"
+    subheadline="Illinois, Midwest, or anywhere in the US — tell us where your project is and we'll respond within 4 business hours with a detailed estimate."
+    primaryCTA={{ href: '/contact/', label: 'Request a Free Quote' }}
+  />
+
+</BaseLayout>

@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CTASection from '../../../components/CTASection.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'AI Rack Safety Inspector',
+  description: 'Upload photos of damaged pallet racks for an instant AI safety assessment based on ANSI MH16.1 guidelines.',
+  applicationCategory: 'UtilityApplication',
+  provider: {
+    '@type': 'LocalBusiness',
+    '@id': 'https://redlineinstallers.com/#business',
+    name: 'Redline Installers LLC',
+  },
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  url: 'https://redlineinstallers.com/tools/rack-inspection/',
+};
+---
+
+<BaseLayout
+  title="AI Rack Safety Inspector | Free Pallet Rack Assessment | Redline Installers"
+  description="Upload photos of damaged pallet racks and receive an instant AI safety assessment based on ANSI MH16.1 guidelines. Free tool from Redline Installers LLC."
+  canonical="https://redlineinstallers.com/tools/rack-inspection/"
+  schema={schema}
+>
+
+  <!-- Header -->
+  <section style="background-color: var(--color-steel-950); padding-block: 64px;">
+    <div class="container">
+      <div style="max-width: 640px;">
+        <p class="text-label-sm" style="color: var(--color-primary); margin-bottom: 12px;">Free Tool</p>
+        <h1 class="text-headline-lg" style="color: #ffffff; margin-bottom: 16px; font-family: var(--font-display);">
+          AI Rack Safety Inspector
+        </h1>
+        <p class="text-body-lg" style="color: var(--color-steel-300); margin-bottom: 32px;">
+          Upload photos of damaged pallet racks and receive an instant preliminary safety assessment based on ANSI MH16.1 guidelines — at no cost.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="chip chip-gray">Powered by Claude AI</span>
+          <span class="chip chip-gray">ANSI MH16.1 Reference</span>
+          <span class="chip chip-gray">PDF Report</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coming Soon -->
+  <section style="padding-block: 96px; background-color: var(--color-surface);">
+    <div class="container">
+      <div style="max-width: 600px; margin-inline: auto; text-align: center;">
+
+        <!-- Icon -->
+        <div style="width: 80px; height: 80px; border-radius: 50%; background-color: var(--color-primary-subtle); margin-inline: auto; margin-bottom: 32px; display: flex; align-items: center; justify-content: center;">
+          <svg width="40" height="40" fill="none" stroke="var(--color-primary)" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+          </svg>
+        </div>
+
+        <h2 class="text-headline-lg" style="color: var(--color-on-surface); margin-bottom: 16px; font-family: var(--font-display);">
+          Coming Soon
+        </h2>
+        <p class="text-body-lg" style="color: var(--color-on-surface-muted); margin-bottom: 32px;">
+          Our AI-powered rack safety assessment tool is in development. Upload photos and receive a structured damage report — critical, moderate, or cosmetic — with ANSI MH16.1 references and recommendations.
+        </p>
+        <p class="text-body-md" style="color: var(--color-on-surface-muted); margin-bottom: 40px;">
+          In the meantime, call us directly for an urgent rack inspection or to schedule a free on-site assessment.
+        </p>
+
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="tel:+16303637251" class="btn-primary">
+            Call 630-363-7251
+          </a>
+          <a href="/quote/" class="btn-outline">
+            Schedule an Inspection
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What it will do -->
+  <section style="padding-block: 80px; background-color: var(--color-steel-50);">
+    <div class="container">
+      <h2 class="text-headline-lg" style="color: var(--color-on-surface); margin-bottom: 48px; font-family: var(--font-display);">
+        What the Tool Will Do
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          {
+            step: '01',
+            title: 'Upload Photos',
+            desc: 'Take 3–6 photos of damaged rack components with your phone and upload them directly in the browser.',
+          },
+          {
+            step: '02',
+            title: 'AI Analysis',
+            desc: 'Claude AI analyzes each photo against ANSI MH16.1 structural damage thresholds and classifies severity.',
+          },
+          {
+            step: '03',
+            title: 'Get Your Report',
+            desc: 'Receive a PDF report with per-photo findings, overall severity rating, ANSI references, and next-step recommendations.',
+          },
+        ].map(({ step, title, desc }) => (
+          <div class="card">
+            <div class="text-label-sm" style="color: var(--color-primary); margin-bottom: 12px;">Step {step}</div>
+            <h3 class="text-headline-md" style="color: var(--color-on-surface); margin-bottom: 10px; font-family: var(--font-display);">{title}</h3>
+            <p class="text-body-md" style="color: var(--color-on-surface-muted);">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 40px; padding: 20px 24px; background-color: var(--color-error-subtle); border-radius: 8px; border-left: 3px solid var(--color-error);">
+        <p class="text-body-md" style="color: var(--color-on-surface);">
+          <strong>Important:</strong> The AI Rack Inspector is a preliminary assessment tool, not a substitute for a certified engineering inspection. Always consult a qualified inspector before making structural decisions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Need a Rack Inspection Now?"
+    subheadline="Don't wait for the tool. Call us for a free on-site rack safety assessment — we respond within 4 business hours."
+    primaryCTA={{ href: 'tel:+16303637251', label: 'Call 630-363-7251' }}
+    secondaryCTA={{ href: '/quote/', label: 'Schedule Assessment' }}
+  />
+
+</BaseLayout>

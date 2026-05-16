@@ -1,0 +1,526 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTASection from '../../components/CTASection.astro';
+import { projects, getProject } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({
+    params: { slug: p.slug },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props;
+const related = projects.filter((p) => p.slug !== project.slug).slice(0, 3);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://redlineinstallers.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://redlineinstallers.com/projects/' },
+    { '@type': 'ListItem', position: 3, name: project.title, item: `https://redlineinstallers.com/projects/${project.slug}/` },
+  ],
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: project.title,
+  description: `Case study: ${project.scope} — ${project.service} by Redline Installers LLC in ${project.location}.`,
+  author: {
+    '@type': 'Organization',
+    name: 'Redline Installers LLC',
+    url: 'https://redlineinstallers.com',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Redline Installers LLC',
+    url: 'https://redlineinstallers.com',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://redlineinstallers.com/logo.jpg',
+    },
+  },
+  datePublished: `${project.year}-01-01`,
+  image: project.img,
+  url: `https://redlineinstallers.com/projects/${project.slug}/`,
+  about: {
+    '@type': 'Service',
+    name: project.service,
+    provider: {
+      '@type': 'LocalBusiness',
+      '@id': 'https://redlineinstallers.com/#business',
+    },
+  },
+};
+---
+
+<BaseLayout
+  title={`${project.title} | Redline Installers Project Case Study`}
+  description={`Case study: ${project.scope} — ${project.service} by Redline Installers LLC in ${project.location}.`}
+  canonical={`https://redlineinstallers.com/projects/${project.slug}/`}
+  schema={[breadcrumbSchema, articleSchema]}
+>
+
+  <!-- Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-chips">
+          <span class="hero-chip-service">{project.service}</span>
+          <span class="hero-chip-state">{project.location}</span>
+        </div>
+        <h1 class="text-display text-white hero-title">{project.title}</h1>
+        <p class="hero-meta">{project.year} Project</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/projects/">Projects</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">{project.title}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <section class="project-main">
+    <div class="container">
+      <div class="project-layout">
+
+        <!-- Body -->
+        <div class="project-body">
+
+          <!-- Hero image -->
+          <div class="project-feature-img" style={`background-image: url('${project.img}')`} role="img" aria-label={project.imgAlt}></div>
+
+          <!-- Metrics bar -->
+          <div class="project-metrics-bar">
+            {project.metrics.map((m) => (
+              <div class="pm-item">
+                <span class="pm-value">{m.value}</span>
+                <span class="pm-label">{m.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <!-- Content sections -->
+          <article class="project-content">
+            <section class="content-section">
+              <h2 class="content-heading">The Challenge</h2>
+              <p class="content-body">{project.challenge}</p>
+            </section>
+
+            <section class="content-section">
+              <h2 class="content-heading">Our Approach</h2>
+              <p class="content-body">{project.solution}</p>
+            </section>
+
+            <section class="content-section">
+              <h2 class="content-heading">Results</h2>
+              <p class="content-body">{project.results}</p>
+            </section>
+
+            <div class="project-tags">
+              {project.tags.map((t) => (
+                <span class="project-tag">{t}</span>
+              ))}
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="project-sidebar">
+
+          <div class="sidebar-card">
+            <h2 class="sidebar-heading">Project Details</h2>
+            <dl class="sidebar-details">
+              <div class="detail-row">
+                <dt>Service</dt>
+                <dd>
+                  <a href={`/services/${project.serviceSlug}/`} class="detail-link">{project.service}</a>
+                </dd>
+              </div>
+              <div class="detail-row">
+                <dt>Location</dt>
+                <dd>{project.location}</dd>
+              </div>
+              <div class="detail-row">
+                <dt>Year</dt>
+                <dd>{project.year}</dd>
+              </div>
+              {project.metrics.map((m) => (
+                <div class="detail-row">
+                  <dt>{m.label}</dt>
+                  <dd class="detail-metric">{m.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div class="sidebar-cta">
+            <p class="sidebar-cta-headline">Have a similar project?</p>
+            <p class="sidebar-cta-sub">We respond within 4 business hours with a detailed quote.</p>
+            <a href="/quote/" class="btn-primary sidebar-btn">Request a Free Quote</a>
+            <a href="tel:+16303637251" class="btn-outline sidebar-btn">Call 630-363-7251</a>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Projects -->
+  <section class="related-section">
+    <div class="container">
+      <h2 class="text-headline-md related-heading" style="color: var(--color-on-surface);">More Projects</h2>
+      <div class="related-grid">
+        {related.map((p) => (
+          <a href={`/projects/${p.slug}/`} class="related-card">
+            <div class="related-img" style={`background-image: url('${p.img}')`}></div>
+            <div class="related-body">
+              <span class="related-service">{p.service}</span>
+              <h3 class="related-title">{p.title}</h3>
+              <p class="related-location">{p.location} · {p.year}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+
+</BaseLayout>
+
+<style>
+/* Hero */
+.project-hero {
+  background: linear-gradient(135deg, #0a0e13 0%, #1a2129 60%, #2a323d 100%);
+  padding-block: 72px 64px;
+  border-bottom: 1px solid var(--color-steel-800);
+}
+.hero-inner { max-width: 720px; }
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.hero-chip-service {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  border: 1px solid rgba(186,0,19,0.4);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+}
+.hero-chip-state {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+}
+.hero-title { margin: 0 0 16px; }
+.hero-meta {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.04em;
+}
+
+/* Breadcrumb */
+.breadcrumb-bar {
+  background-color: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: 12px;
+}
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0; padding: 0;
+  font-size: 13px;
+  color: var(--color-on-surface-muted);
+}
+.breadcrumb-list a {
+  color: var(--color-on-surface-muted);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.breadcrumb-list a:hover { color: var(--color-primary); }
+
+/* Main layout */
+.project-main {
+  padding-block: 72px;
+  background-color: var(--color-surface);
+}
+.project-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (min-width: 1024px) {
+  .project-layout {
+    grid-template-columns: 1fr 320px;
+    gap: 64px;
+  }
+}
+
+/* Feature image */
+.project-feature-img {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  background-color: var(--color-steel-800);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--color-border);
+  margin-bottom: 0;
+}
+
+/* Metrics bar */
+.project-metrics-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-top: none;
+  margin-bottom: 48px;
+}
+.pm-item {
+  flex: 1;
+  min-width: 120px;
+  padding: 20px 24px;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pm-item:last-child { border-right: none; }
+.pm-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.pm-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+}
+
+/* Content sections */
+.project-content { display: flex; flex-direction: column; gap: 40px; }
+.content-section { display: flex; flex-direction: column; gap: 12px; }
+.content-heading {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-on-surface);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+.content-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--color-on-surface-muted);
+  margin: 0;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+}
+.project-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-steel-500);
+  background-color: var(--color-steel-100);
+  border: 1px solid var(--color-border);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* Sidebar */
+.project-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media (min-width: 1024px) {
+  .project-sidebar { position: sticky; top: 88px; }
+}
+
+.sidebar-card {
+  border: 1px solid var(--color-border);
+  padding: 28px;
+}
+.sidebar-heading {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-on-surface);
+  margin-bottom: 20px;
+}
+.sidebar-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+.detail-row:last-child { border-bottom: none; }
+.detail-row dt {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+  flex-shrink: 0;
+}
+.detail-row dd {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+  text-align: right;
+  margin: 0;
+}
+.detail-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.detail-link:hover { color: var(--color-primary-hover); }
+.detail-metric {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.sidebar-cta {
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sidebar-cta-headline {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-on-surface);
+  margin: 0;
+}
+.sidebar-cta-sub {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-on-surface-muted);
+  margin: 0 0 4px;
+}
+.sidebar-btn {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Related */
+.related-section {
+  padding-block: 72px;
+  background-color: var(--color-surface-alt);
+  border-top: 1px solid var(--color-border);
+}
+.related-heading { margin-bottom: 32px; }
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+}
+@media (min-width: 640px)  { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.related-card {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 200ms;
+}
+.related-card:hover { border-color: var(--color-primary); z-index: 1; position: relative; }
+
+.related-img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background-color: var(--color-steel-800);
+  background-size: cover;
+  background-position: center;
+  transition: background-size 400ms ease;
+}
+.related-card:hover .related-img { background-size: 108%; }
+
+.related-body { padding: 20px 24px 24px; }
+.related-service {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 6px;
+}
+.related-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-on-surface);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.related-location {
+  font-size: 12px;
+  color: var(--color-on-surface-muted);
+  margin: 0;
+}
+</style>

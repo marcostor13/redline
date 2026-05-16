@@ -1,0 +1,76 @@
+---
+interface Props {
+  headline?: string;
+  subheadline?: string;
+  primaryCTA?: { href: string; label: string };
+  secondaryCTA?: { href: string; label: string };
+}
+const {
+  headline = 'Ready to Start Your Warehouse Project?',
+  subheadline = 'Get a free estimate from a 34-year veteran. We respond within 4 business hours.',
+  primaryCTA = { href: '/quote/', label: 'Request a Free Quote' },
+  secondaryCTA = { href: 'tel:+16303637251', label: 'Call 630-363-7251' },
+} = Astro.props;
+---
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text" data-animate>
+        <p class="cta-eyebrow">Get Started</p>
+        <h2 class="text-headline-lg cta-heading">{headline}</h2>
+        <p class="cta-sub">{subheadline}</p>
+      </div>
+      <div class="cta-actions" data-animate data-delay="2">
+        <a href={primaryCTA.href} class="btn-primary">{primaryCTA.label}</a>
+        <a href={secondaryCTA.href} class="btn-outline-light">{secondaryCTA.label}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.cta-section {
+  background-color: var(--color-steel-950);
+  padding-block: 100px;
+  border-top: 1px solid var(--color-steel-800);
+}
+.cta-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+}
+@media (min-width: 1024px) {
+  .cta-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 64px;
+  }
+}
+.cta-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.cta-heading {
+  color: #ffffff;
+  max-width: 520px;
+  margin-top: 12px;
+}
+.cta-sub {
+  color: var(--color-steel-300);
+  max-width: 500px;
+  margin-top: 16px;
+}
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+@media (min-width: 480px) { .cta-actions { flex-direction: row; } }
+</style>

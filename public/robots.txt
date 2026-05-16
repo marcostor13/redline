@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /tools/rack-inspection/
+Crawl-delay: 10
+
+Sitemap: https://redlineinstallers.com/sitemap-index.xml

@@ -1,0 +1,193 @@
+---
+const services = [
+  { href: '/services/pallet-rack-installation/', label: 'Pallet Rack Installation' },
+  { href: '/services/warehouse-relocation/', label: 'Warehouse Relocation' },
+  { href: '/services/rack-repair-modifications/', label: 'Rack Repair & Modifications' },
+  { href: '/services/mezzanine-installation/', label: 'Mezzanine Installation' },
+  { href: '/services/conveyor-systems/', label: 'Conveyor Systems' },
+  { href: '/services/tear-down-reinstallation/', label: 'Tear-Down & Reinstallation' },
+  { href: '/services/material-handling-systems/', label: 'Material Handling Systems' },
+];
+const company = [
+  { href: '/about/', label: 'About' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/service-area/', label: 'Service Area' },
+  { href: '/contact/', label: 'Contact' },
+  { href: '/quote/', label: 'Request a Quote' },
+  { href: '/tools/rack-inspection/', label: 'AI Rack Inspector' },
+];
+const industries = [
+  { href: '/industries/warehousing/', label: 'Warehousing' },
+  { href: '/industries/distribution-centers/', label: 'Distribution Centers' },
+  { href: '/industries/manufacturing/', label: 'Manufacturing' },
+  { href: '/industries/logistics/', label: 'Logistics' },
+  { href: '/industries/industrial-storage/', label: 'Industrial Storage' },
+  { href: '/industries/food-distribution/', label: 'Food Distribution' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <img src="/logo.jpg" alt="Redline Installers" class="footer-logo-img" />
+        </a>
+        <p class="footer-tagline">
+          Warehouse & material handling installation specialists.<br>
+          Illinois, Midwest & nationwide since 1990.
+        </p>
+        <div class="footer-contact">
+          <a href="tel:+16303637251" class="footer-phone">630-363-7251</a>
+          <a href="mailto:jk@redlineinstallers.com" class="footer-email">jk@redlineinstallers.com</a>
+          <address class="footer-address">
+            980 N Michigan Ave Ste 1090 PMB 357073<br>Chicago, IL 60611-4521
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Services</h4>
+        <ul class="footer-links">
+          {services.map(l => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Industries</h4>
+        <ul class="footer-links">
+          {industries.map(l => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Company</h4>
+        <ul class="footer-links">
+          {company.map(l => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+        <a href="/quote/" class="btn-primary footer-cta">Get a Free Quote</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} Redline Installers LLC. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background-color: var(--color-surface-alt);
+  border-top: 1px solid var(--color-border);
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding-block: 72px;
+}
+@media (min-width: 640px) {
+  .footer-top { grid-template-columns: 1fr 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (min-width: 1024px) {
+  .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+  .footer-brand { grid-column: auto; }
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 20px; }
+
+.footer-logo { display: flex; text-decoration: none; }
+.footer-logo-img { height: 44px; width: auto; display: block; }
+
+.footer-tagline {
+  font-size: 14px;
+  color: var(--color-on-surface-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer-contact { display: flex; flex-direction: column; gap: 6px; }
+.footer-phone {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.footer-phone:hover { color: var(--color-primary-hover); }
+.footer-email {
+  font-size: 14px;
+  color: var(--color-on-surface-muted);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.footer-email:hover { color: var(--color-on-surface); }
+.footer-address {
+  font-style: normal;
+  font-size: 13px;
+  color: var(--color-on-surface-muted);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+.footer-col { display: flex; flex-direction: column; gap: 20px; }
+.footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-on-surface);
+}
+.footer-links {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-links a {
+  font-size: 14px;
+  color: var(--color-on-surface-muted);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.footer-links a:hover { color: var(--color-primary); }
+.footer-cta {
+  margin-top: 8px;
+  font-size: 14px;
+  padding: 11px 20px;
+  align-self: flex-start;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--color-border);
+  padding-block: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  color: var(--color-on-surface-muted);
+}
+@media (min-width: 640px) {
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a {
+  color: var(--color-on-surface-muted);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.footer-legal a:hover { color: var(--color-on-surface); }
+</style>

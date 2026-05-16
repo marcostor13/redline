@@ -1,0 +1,248 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': 'https://redlineinstallers.com/#business',
+    name: 'Redline Installers LLC',
+    description: 'Warehouse and pallet rack installation specialists. 34+ years of experience serving Illinois, the Midwest, and all 50 states.',
+    url: 'https://redlineinstallers.com',
+    telephone: '+1-630-363-7251',
+    email: 'jk@redlineinstallers.com',
+    foundingDate: '1990',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '980 N Michigan Ave Ste 1090 PMB 357073',
+      addressLocality: 'Chicago',
+      addressRegion: 'IL',
+      postalCode: '60611-4521',
+      addressCountry: 'US',
+    },
+    areaServed: { '@type': 'Country', name: 'United States' },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '07:00',
+        closes: '18:00',
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'John Korabik',
+    jobTitle: 'Founder & Lead Installer',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Redline Installers LLC',
+    },
+    description: 'John Korabik has 34+ years of hands-on warehouse and pallet rack installation experience, starting as an installer in 1990.',
+    url: 'https://redlineinstallers.com/about/',
+  },
+];
+
+const differentiators = [
+  {
+    label: 'No Subcontractors',
+    body: 'Every crew member on your job site is trained and vetted by Redline Installers. No brokered labor, no unknown teams.',
+  },
+  {
+    label: 'OSHA-Compliant on Every Job',
+    body: 'Full safety compliance is non-negotiable. Every installation follows OSHA and ANSI MH16.1 standards — documented and verifiable.',
+  },
+  {
+    label: 'Nationwide Travel',
+    body: 'We take projects across all 50 states. Logistics are coordinated in advance so your project stays on schedule regardless of location.',
+  },
+  {
+    label: 'Free Site Assessments',
+    body: 'Before any commitment, we assess your facility, layout, and requirements — at no cost to you. No obligation, no sales pressure.',
+  },
+  {
+    label: '4-Hour Quote Response',
+    body: 'Send us your project details and receive a detailed quote within 4 business hours. We respect your timeline.',
+  },
+  {
+    label: 'Warehouse Specialists Only',
+    body: 'We do not take general construction work. Every dollar of revenue and every hour of training goes into warehouse and material handling expertise.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Redline Installers — 34+ Years Building America's Warehouses"
+  description="John Korabik founded Redline Installers LLC after 34 years as a warehouse installer. No subcontractors, OSHA-compliant, nationwide. Chicago, IL."
+  canonical="https://redlineinstallers.com/about/"
+  schema={schema}
+>
+
+  <Hero
+    headline="About Redline Installers — 34+ Years Building America's Warehouses"
+    subheadline="Founded by a career installer, built for warehouses. We are specialists — not a general contractor that also does racking."
+    compact={true}
+  />
+
+  <!-- Founder Section -->
+  <section class="py-20" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="text-label-sm block mb-3" style="color: var(--color-primary);">The Founder</span>
+          <h2 class="text-headline-lg mb-6" style="color: var(--color-on-surface); font-family: var(--font-display);">
+            John Korabik — 34+ Years on the Floor
+          </h2>
+          <p class="text-body-lg mb-5" style="color: var(--color-on-surface-muted);">
+            John Korabik started as an installer in 1990. Not a project manager who inherited a crew — an installer who spent decades on warehouse floors across the country, learning every system, every failure mode, and every shortcut that leads to a collapse.
+          </p>
+          <p class="text-body-lg mb-5" style="color: var(--color-on-surface-muted);">
+            He founded Redline Installers LLC to deliver the standard of work he knew was possible but rarely seen: crews that know what they're doing, documentation that holds up to inspection, and jobs that don't require callbacks.
+          </p>
+          <p class="text-body-lg" style="color: var(--color-on-surface-muted);">
+            When you work with Redline, you're not handed off to a junior PM. John is involved in every project from quote to completion.
+          </p>
+        </div>
+        <div class="card card-featured">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="text-center py-6">
+              <div class="stat-number" style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--color-primary); line-height: 1;">34+</div>
+              <div class="text-label-sm mt-2" style="color: var(--color-on-surface-muted);">Years Experience</div>
+            </div>
+            <div class="text-center py-6">
+              <div class="stat-number" style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--color-primary); line-height: 1;">50</div>
+              <div class="text-label-sm mt-2" style="color: var(--color-on-surface-muted);">States Served</div>
+            </div>
+            <div class="text-center py-6">
+              <div class="stat-number" style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--color-primary); line-height: 1;">0</div>
+              <div class="text-label-sm mt-2" style="color: var(--color-on-surface-muted);">Subcontractors Used</div>
+            </div>
+            <div class="text-center py-6">
+              <div class="stat-number" style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--color-primary); line-height: 1;">4hr</div>
+              <div class="text-label-sm mt-2" style="color: var(--color-on-surface-muted);">Quote Response Time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-20" style="background-color: var(--color-steel-100);">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="text-label-sm block mb-3" style="color: var(--color-primary);">Our Mission</span>
+        <h2 class="text-headline-lg mb-6" style="color: var(--color-on-surface); font-family: var(--font-display);">
+          Warehouse Specialists. That's All We Do.
+        </h2>
+        <p class="text-body-lg mb-5" style="color: var(--color-on-surface-muted);">
+          Redline Installers is not a general contractor. We do not install drywall, manage office buildouts, or send whoever is available. We install pallet rack systems, material handling equipment, mezzanines, conveyor systems, and warehouse infrastructure — exclusively.
+        </p>
+        <p class="text-body-lg" style="color: var(--color-on-surface-muted);">
+          That focus means every member of our team has relevant, deep experience. When you describe your project, we already know the system you're referencing, the load ratings that matter, and the OSHA standards that apply.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiators -->
+  <section class="py-20" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="max-w-2xl mb-12">
+        <span class="text-label-sm block mb-3" style="color: var(--color-primary);">Why Redline</span>
+        <h2 class="text-headline-lg" style="color: var(--color-on-surface); font-family: var(--font-display);">
+          What Sets Us Apart
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {differentiators.map((item) => (
+          <div class="card">
+            <div class="w-2 h-8 rounded mb-4" style="background-color: var(--color-primary);"></div>
+            <h3 class="text-headline-md mb-3" style="color: var(--color-on-surface); font-family: var(--font-display);">
+              {item.label}
+            </h3>
+            <p class="text-body-md" style="color: var(--color-on-surface-muted);">
+              {item.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety & Quality -->
+  <section class="py-20" style="background-color: var(--color-steel-950);">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="text-label-sm block mb-3" style="color: var(--color-primary-container);">Safety & Quality</span>
+          <h2 class="text-headline-lg mb-6" style="color: #ffffff; font-family: var(--font-display);">
+            OSHA Compliance Is Not Optional
+          </h2>
+          <p class="text-body-lg mb-5" style="color: var(--color-steel-300);">
+            Every Redline installation follows OSHA 29 CFR 1910 general industry standards and ANSI MH16.1 rack installation specifications. We document load capacities, anchor placements, and inspection checkpoints — so your facility is compliant from day one.
+          </p>
+          <p class="text-body-lg" style="color: var(--color-steel-300);">
+            We also offer post-installation rack safety inspections to identify damage, overloading, or configuration issues before they become incidents. For urgent rack safety concerns, call us directly at <a href="tel:+16303637251" style="color: var(--color-primary-container); text-decoration: none; font-weight: 600;">630-363-7251</a>.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-4">
+          {[
+            'OSHA 29 CFR 1910 compliant on all installations',
+            'ANSI MH16.1 rack installation standards',
+            'Load capacity documentation provided on every job',
+            'Site safety briefing before work begins',
+            'No shortcuts on anchor patterns or beam clips',
+            'Post-installation walkthroughs and sign-off',
+          ].map((point) => (
+            <div class="flex items-start gap-3 py-3" style="border-bottom: 1px solid var(--color-steel-700);">
+              <span style="color: var(--color-primary-container); font-size: 18px; flex-shrink: 0; margin-top: 2px;">&#10003;</span>
+              <span class="text-body-md" style="color: var(--color-steel-300);">{point}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Coverage -->
+  <section class="py-20" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="max-w-2xl mb-10">
+        <span class="text-label-sm block mb-3" style="color: var(--color-primary);">Service Coverage</span>
+        <h2 class="text-headline-lg mb-4" style="color: var(--color-on-surface); font-family: var(--font-display);">
+          Based in Chicago. Working Everywhere.
+        </h2>
+        <p class="text-body-lg" style="color: var(--color-on-surface-muted);">
+          Our primary market is Illinois and the Midwest — Chicago, Rockford, Springfield, Indianapolis, Milwaukee, Detroit, Columbus, and surrounding metro areas. For larger projects, we coordinate travel logistics to any location in the continental US.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card card-featured">
+          <h3 class="text-headline-md mb-3" style="color: var(--color-on-surface); font-family: var(--font-display);">Illinois</h3>
+          <p class="text-body-md mb-4" style="color: var(--color-on-surface-muted);">Primary market. Chicago metro, Rockford, Springfield, Peoria, Joliet, Aurora, Naperville, and all surrounding areas.</p>
+          <a href="/service-area/" class="text-label-sm font-semibold" style="color: var(--color-primary);">View IL coverage &rarr;</a>
+        </div>
+        <div class="card">
+          <h3 class="text-headline-md mb-3" style="color: var(--color-on-surface); font-family: var(--font-display);">Midwest</h3>
+          <p class="text-body-md mb-4" style="color: var(--color-on-surface-muted);">Indiana, Wisconsin, Michigan, Ohio, Iowa, Missouri, Minnesota, Kansas — regular project travel with short mobilization windows.</p>
+          <a href="/service-area/" class="text-label-sm font-semibold" style="color: var(--color-primary);">View Midwest coverage &rarr;</a>
+        </div>
+        <div class="card">
+          <h3 class="text-headline-md mb-3" style="color: var(--color-on-surface); font-family: var(--font-display);">Nationwide</h3>
+          <p class="text-body-md mb-4" style="color: var(--color-on-surface-muted);">Travel projects welcome across all 50 states. We handle logistics coordination so your project doesn't depend on local availability.</p>
+          <a href="/contact/" class="text-label-sm font-semibold" style="color: var(--color-primary);">Contact us &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to Work with the Specialists?"
+    subheadline="Free site assessment. No commitment. Response within 4 business hours. John Korabik reviews every quote personally."
+  />
+
+</BaseLayout>

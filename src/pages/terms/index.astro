@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Terms of Service',
+  url: 'https://redlineinstallers.com/terms/',
+  isPartOf: { '@id': 'https://redlineinstallers.com/#website' },
+  about: { '@id': 'https://redlineinstallers.com/#business' },
+  description: 'Terms of service for the Redline Installers LLC website. Governing law: Illinois.',
+};
+---
+
+<BaseLayout
+  title="Terms of Service | Redline Installers LLC"
+  description="Terms of service for the Redline Installers LLC website. Governing law: Illinois. Questions: jk@redlineinstallers.com."
+  canonical="https://redlineinstallers.com/terms/"
+  noindex={true}
+  schema={webPageSchema}
+>
+
+  <section class="py-16" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+
+        <div class="mb-10">
+          <h1 class="text-headline-lg mb-3" style="color: var(--color-on-surface); font-family: var(--font-display);">
+            Terms of Service
+          </h1>
+          <p class="text-body-md" style="color: var(--color-on-surface-muted);">
+            Last updated: May 2025
+          </p>
+        </div>
+
+        <div class="text-body-md" style="color: var(--color-on-surface-muted);">
+
+          <p style="margin-bottom: 24px; color: var(--color-on-surface);">
+            These Terms of Service ("Terms") govern your access to and use of the website located at redlineinstallers.com (the "Site"), operated by Redline Installers LLC ("Redline Installers," "we," "us," or "our"). By accessing or using the Site, you agree to be bound by these Terms. If you do not agree, do not use the Site.
+          </p>
+
+          <!-- Section 1 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            1. Use of the Website
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            The Site is provided for informational and business inquiry purposes. You agree to use the Site only for lawful purposes and in a manner consistent with all applicable federal, state, and local laws.
+          </p>
+          <p style="margin-bottom: 16px;">
+            You may not use the Site to:
+          </p>
+          <ul style="margin-bottom: 16px; padding-left: 24px; list-style: disc;">
+            <li style="margin-bottom: 8px;">Transmit any content that is unlawful, defamatory, fraudulent, or harmful</li>
+            <li style="margin-bottom: 8px;">Attempt to gain unauthorized access to any portion of the Site or its related systems</li>
+            <li style="margin-bottom: 8px;">Introduce malware, viruses, or other malicious code</li>
+            <li style="margin-bottom: 8px;">Engage in automated scraping, crawling, or data harvesting beyond standard search engine indexing</li>
+            <li style="margin-bottom: 8px;">Impersonate any person or entity or misrepresent your affiliation with any person or entity</li>
+          </ul>
+          <p style="margin-bottom: 16px;">
+            We reserve the right to terminate or restrict access to the Site for any user who violates these Terms.
+          </p>
+
+          <!-- Section 2 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            2. Intellectual Property
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            All content on this Site — including text, graphics, logos, service descriptions, and layout — is the property of Redline Installers LLC or its content suppliers and is protected by applicable intellectual property laws.
+          </p>
+          <p style="margin-bottom: 16px;">
+            You may view and print pages of the Site for your personal, non-commercial use only. You may not reproduce, distribute, republish, or create derivative works from any Site content without our prior written permission.
+          </p>
+
+          <!-- Section 3 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            3. Service Information and Quotes
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            Information provided on this Site about our services, pricing ranges, timelines, and capabilities is for general informational purposes only. It does not constitute a binding offer or guarantee of availability, pricing, or project scope.
+          </p>
+          <p style="margin-bottom: 16px;">
+            All formal project quotes and service agreements are provided separately in writing and are subject to their own terms and conditions. Submitting a contact or quote request form on this Site does not create a contractual obligation on the part of Redline Installers LLC.
+          </p>
+
+          <!-- Section 4 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            4. No Warranties
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            THE SITE AND ITS CONTENT ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. REDLINE INSTALLERS LLC EXPRESSLY DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+          </p>
+          <p style="margin-bottom: 16px;">
+            We do not warrant that the Site will be uninterrupted, error-free, or free of viruses or other harmful components. We do not warrant the accuracy, completeness, or timeliness of any content on the Site.
+          </p>
+
+          <!-- Section 5 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            5. Limitation of Liability
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, REDLINE INSTALLERS LLC, ITS MEMBERS, OFFICERS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF, OR INABILITY TO USE, THE SITE OR ITS CONTENT.
+          </p>
+          <p style="margin-bottom: 16px;">
+            IN NO EVENT SHALL OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT OF YOUR USE OF THE SITE EXCEED ONE HUNDRED DOLLARS ($100.00).
+          </p>
+          <p style="margin-bottom: 16px;">
+            Some jurisdictions do not allow the exclusion or limitation of certain warranties or liability for incidental or consequential damages, so the above limitations may not apply to you.
+          </p>
+
+          <!-- Section 6 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            6. Third-Party Links
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            The Site may contain links to third-party websites or services. These links are provided for your convenience only. We have no control over the content, privacy practices, or terms of third-party sites and are not responsible for any content, products, or services available from those sites. Accessing third-party links is at your own risk.
+          </p>
+
+          <!-- Section 7 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            7. Privacy
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            Your use of the Site is also governed by our <a href="/privacy/" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Privacy Policy</a>, which is incorporated into these Terms by reference. By using the Site, you consent to our collection and use of information as described in the Privacy Policy.
+          </p>
+
+          <!-- Section 8 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            8. Governing Law
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            These Terms shall be governed by and construed in accordance with the laws of the State of Illinois, without regard to its conflict of law provisions.
+          </p>
+          <p style="margin-bottom: 16px;">
+            Any dispute arising from or relating to these Terms or your use of the Site shall be subject to the exclusive jurisdiction of the state and federal courts located in Cook County, Illinois. You consent to personal jurisdiction in such courts.
+          </p>
+
+          <!-- Section 9 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            9. Changes to These Terms
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            We reserve the right to modify these Terms at any time. Modifications will be effective immediately upon posting to the Site. The "Last updated" date at the top of this page reflects the date of the most recent revision. Your continued use of the Site after changes are posted constitutes your acceptance of the revised Terms.
+          </p>
+
+          <!-- Section 10 -->
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-on-surface); margin-top: 40px; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid var(--color-border);">
+            10. Contact Information
+          </h2>
+
+          <p style="margin-bottom: 16px;">
+            If you have questions about these Terms, please contact us:
+          </p>
+          <address style="font-style: normal; line-height: 1.8; color: var(--color-on-surface);">
+            Redline Installers LLC<br />
+            980 N Michigan Ave Ste 1090 PMB 357073<br />
+            Chicago, IL 60611-4521<br />
+            Email: <a href="mailto:jk@redlineinstallers.com" style="color: var(--color-primary); text-decoration: none;">jk@redlineinstallers.com</a><br />
+            Phone: <a href="tel:+16303637251" style="color: var(--color-primary); text-decoration: none;">630-363-7251</a>
+          </address>
+
+        </div>
+
+        <div class="mt-12 pt-8" style="border-top: 1px solid var(--color-border);">
+          <a href="/" class="btn-outline">
+            &larr; Back to Home
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

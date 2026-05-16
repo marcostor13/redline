@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IndustryCard from '../../components/IndustryCard.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const industries = (await getCollection('industries')).sort((a, b) => a.data.order - b.data.order);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://redlineinstallers.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: 'https://redlineinstallers.com/industries/' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Industries We Serve | Warehouse Installation | Redline Installers LLC"
+  description="Warehouse and material handling installation for warehousing, distribution centers, manufacturing, logistics, industrial storage, and food distribution operations in Illinois and nationwide."
+  canonical="https://redlineinstallers.com/industries/"
+  schema={breadcrumbSchema}
+>
+
+  <!-- Page Hero -->
+  <section class="py-20" style="background: linear-gradient(135deg, #0A0E13 0%, #1A2129 60%, #2A323D 100%);">
+    <div class="container">
+      <div class="max-w-3xl">
+        <span class="text-label-sm block mb-3" style="color: var(--color-primary);">
+          Industries We Serve
+        </span>
+        <h1 class="text-display text-white mb-6">
+          Warehouse Installation for Every Industrial Operation
+        </h1>
+        <p class="text-body-lg mb-8" style="color: var(--color-steel-300);">
+          Cold storage, high-throughput distribution, heavy manufacturing, 3PL — our crews know the specific
+          installation requirements, compliance standards, and operational constraints of each industry.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/quote/" class="btn-primary">Request a Free Quote</a>
+          <a href="tel:+16303637251" class="btn-outline-light">Call 630-363-7251</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Grid -->
+  <section class="py-20" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="max-w-2xl mb-12">
+        <span class="text-label-sm block mb-3" style="color: var(--color-primary);">Sector Experience</span>
+        <h2 class="text-headline-lg section-heading" style="color: var(--color-on-surface); font-family: var(--font-display);">
+          Built for Industrial Operations
+        </h2>
+        <p class="text-body-lg mt-6" style="color: var(--color-on-surface-muted);">
+          Every industry has specific storage requirements, compliance standards, and operational constraints
+          that affect how a rack system should be designed and installed. Redline's 34+ years of field
+          experience means we understand these differences and build accordingly.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {industries.map((ind) => (
+          <IndustryCard
+            title={ind.data.title}
+            description={ind.data.description}
+            href={`/industries/${ind.id}/`}
+            icon={ind.data.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area Strip -->
+  <section class="py-16" style="background-color: var(--color-steel-50);">
+    <div class="container">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div>
+          <h2 class="text-headline-md mb-2 font-display" style="color: var(--color-on-surface);">
+            Illinois, Midwest & All 50 States
+          </h2>
+          <p class="text-body-md" style="color: var(--color-on-surface-muted);">
+            Based in Chicago. Travel projects welcome nationwide — we coordinate logistics to minimize your
+            downtime regardless of industry or location.
+          </p>
+        </div>
+        <a href="/quote/" class="btn-primary whitespace-nowrap">
+          Get a Free Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+
+</BaseLayout>
+
+<style>
+  .font-display { font-family: var(--font-display); }
+</style>

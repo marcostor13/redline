@@ -1,0 +1,286 @@
+---
+import { projects } from '../data/projects';
+---
+
+<section class="projects-section">
+  <div class="container">
+
+    <div class="projects-header" data-animate>
+      <p class="text-eyebrow">Selected Projects</p>
+      <h2 class="text-headline-lg section-heading" style="color: var(--color-on-surface); margin-top: 12px;">
+        Work We&apos;re Proud Of
+      </h2>
+      <p class="text-body-lg" style="max-width: 540px; margin-top: 24px;">
+        From emergency rack repairs to 200,000 sq ft full builds — every project delivered on time, OSHA-compliant, zero subcontractors.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="projects-grid-wrap">
+    <div class="projects-grid" data-animate-stagger>
+      {projects.map((p) => (
+        <a href={`/projects/${p.slug}/`} class="project-card" aria-label={`View case study: ${p.title}`}>
+
+          <div class="project-img-wrap" style={`background-image: url('${p.img}')`}>
+            <div class="project-img-overlay">
+              <span class="project-year">{p.year}</span>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <span class="project-service">{p.service}</span>
+            <h3 class="project-title">{p.title}</h3>
+            <p class="project-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              {p.location}
+            </p>
+            <p class="project-scope">{p.scope}</p>
+
+            <div class="project-metrics">
+              {p.metrics.slice(0, 2).map((m) => (
+                <div class="project-metric">
+                  <span class="metric-value">{m.value}</span>
+                  <span class="metric-label">{m.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <span class="project-link">
+              View Case Study
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="projects-footer" data-animate>
+      <div class="projects-footer-text">
+        <p class="projects-footer-label">Ready to start?</p>
+        <p class="projects-footer-sub">We respond to all project inquiries within 4 business hours.</p>
+      </div>
+      <div class="projects-footer-actions">
+        <a href="/quote/" class="btn-primary">Request a Free Quote</a>
+        <a href="tel:+16303637251" class="btn-outline">Call 630-363-7251</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+.projects-section {
+  padding-block: 100px;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.projects-header {
+  margin-bottom: 56px;
+}
+
+.projects-grid-wrap {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: var(--max-width-content);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+@media (min-width: 640px)  { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding-inline: 80px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .projects-grid { padding-inline: 48px; }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 200ms;
+  margin-left: -1px;
+}
+.project-card:first-child,
+.project-card:nth-child(3n+1) { margin-left: 0; }
+@media (max-width: 639px) { .project-card { margin-left: 0; border-left: 1px solid var(--color-border); } }
+.project-card:hover { border-color: var(--color-primary); z-index: 1; position: relative; }
+
+.project-img-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background-color: var(--color-steel-800);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  transition: background-size 400ms ease;
+}
+.project-card:hover .project-img-wrap { background-size: 108%; }
+
+.project-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,14,19,0.55) 0%, rgba(10,14,19,0) 50%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px 20px;
+}
+
+.project-year {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.7);
+}
+
+.project-body {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+.project-service {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--color-on-surface);
+  margin-bottom: 10px;
+}
+
+.project-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+  margin-bottom: 14px;
+}
+
+.project-scope {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-on-surface-muted);
+  margin: 0 0 20px;
+  flex: 1;
+}
+
+.project-metrics {
+  display: flex;
+  gap: 20px;
+  padding-block: 16px;
+  border-top: 1px solid var(--color-border);
+  margin-bottom: 18px;
+}
+
+.project-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-value {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+  transition: color 150ms, gap 150ms;
+}
+.project-card:hover .project-link {
+  color: var(--color-primary);
+  gap: 10px;
+}
+
+.projects-footer {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+@media (min-width: 768px) {
+  .projects-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.projects-footer-label {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-on-surface);
+  margin: 0 0 4px;
+}
+.projects-footer-sub {
+  font-size: 14px;
+  color: var(--color-on-surface-muted);
+  margin: 0;
+}
+
+.projects-footer-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+</style>

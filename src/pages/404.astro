@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Redline Installers LLC"
+  description="The page you requested could not be found. Return to Redline Installers LLC for pallet rack installation, warehouse relocation, and material handling services."
+  canonical="https://redlineinstallers.com/404/"
+  noindex={true}
+>
+
+  <section class="not-found-section">
+    <div class="container">
+      <div class="not-found-inner">
+        <p class="not-found-code">404</p>
+        <h1 class="not-found-heading">Page Not Found</h1>
+        <p class="not-found-body">
+          The page you requested does not exist or has been moved. Use the links below to find what you need.
+        </p>
+        <div class="not-found-links">
+          <a href="/" class="btn-primary">Back to Home</a>
+          <a href="/services/" class="btn-outline-light">View Services</a>
+          <a href="/contact/" class="btn-outline-light">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.not-found-section {
+  background-color: var(--color-steel-950);
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  padding-block: 100px;
+  border-bottom: 1px solid var(--color-steel-800);
+}
+.not-found-inner {
+  max-width: 560px;
+}
+.not-found-code {
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-primary);
+  letter-spacing: -0.05em;
+  margin: 0 0 16px;
+}
+.not-found-heading {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+}
+.not-found-body {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--color-steel-300);
+  margin: 0 0 40px;
+}
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+</style>

@@ -1,0 +1,61 @@
+---
+const items = [
+  { num: '34+', label: 'Years Experience' },
+  { num: '500+', label: 'Projects Completed' },
+  { num: '50', label: 'States Served' },
+  { num: '$0', label: 'Site Assessment Fee' },
+];
+---
+
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-grid" data-animate-stagger>
+      {items.map((item) => (
+        <div class="trust-item">
+          <span class="trust-num">{item.num}</span>
+          <span class="trust-label">{item.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+.trust-strip {
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-left: 1px solid var(--color-border);
+}
+@media (min-width: 640px) { .trust-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 28px 24px;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+@media (min-width: 640px) { .trust-item { border-bottom: none; } }
+
+.trust-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.trust-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+}
+</style>

@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  icon: string;
+  num?: string;
+}
+const { title, description, href, icon, num } = Astro.props;
+---
+
+<a href={href} class="ind-card no-underline">
+  <div class="ind-card-inner">
+    <div class="ind-card-header">
+      {num && <span class="ind-num" aria-hidden="true">{num}</span>}
+      <span class="ind-icon" aria-hidden="true">{icon}</span>
+    </div>
+    <h3 class="ind-title">{title}</h3>
+    <p class="ind-desc">{description}</p>
+    <span class="btn-text ind-link" aria-hidden="true">
+      Explore
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6" />
+      </svg>
+    </span>
+  </div>
+</a>
+
+<style>
+.ind-card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  transition: border-color 200ms, background-color 200ms;
+  color: inherit;
+}
+.ind-card:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-alt);
+}
+.ind-card-inner {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+.ind-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.ind-num {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  color: var(--color-steel-200);
+  line-height: 1;
+  user-select: none;
+}
+.ind-icon {
+  font-size: 24px;
+}
+.ind-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-on-surface);
+  margin: 0;
+}
+.ind-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-on-surface-muted);
+  flex: 1;
+  margin: 0;
+}
+.ind-link {
+  margin-top: 8px;
+  font-size: 13px;
+}
+</style>

@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Quote Request Received | Redline Installers LLC"
+  description="Your quote request has been received. John Korabik will contact you within 4 business hours."
+  canonical="https://redlineinstallers.com/thank-you/"
+  noindex={true}
+>
+  <section style="background-color: var(--color-steel-950); padding-block: 48px 40px;">
+    <div class="container">
+      <p class="text-label-sm" style="color: var(--color-primary); margin-bottom: 12px;">Request Received</p>
+      <h1 class="text-headline-lg" style="color: #ffffff; margin-bottom: 16px;">Thank You!</h1>
+      <p class="text-body-lg" style="color: var(--color-steel-300); max-width: 560px;">
+        Your quote request has been received. John will be in touch shortly.
+      </p>
+    </div>
+  </section>
+
+  <section style="padding-block: 64px; background-color: var(--color-surface);">
+    <div class="container">
+      <div class="thankyou-layout">
+
+        <!-- Main message card -->
+        <div class="card card-featured" style="padding: 40px;">
+
+          <!-- Checkmark -->
+          <div style="margin-bottom: 28px;">
+            <span class="check-circle" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="20 6 9 17 4 12" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+
+          <h2 class="text-headline-md" style="margin-bottom: 12px; color: var(--color-on-surface);">
+            Your request is in John's inbox.
+          </h2>
+          <p class="text-body-md" style="color: var(--color-on-surface-muted); margin-bottom: 32px; max-width: 520px; line-height: 1.7;">
+            John Korabik personally reviews every quote request. You can expect a response within <strong style="color: var(--color-on-surface);">4 business hours</strong> — often sooner. He'll reach out by phone or email to discuss your project in detail.
+          </p>
+
+          <hr style="border: none; border-top: 1px solid var(--color-border); margin-bottom: 32px;">
+
+          <!-- What to expect -->
+          <h3 class="text-label-sm" style="color: var(--color-on-surface-muted); margin-bottom: 20px;">What to expect</h3>
+          <ol style="list-style: none; padding: 0; margin: 0 0 36px; display: flex; flex-direction: column; gap: 16px;">
+            <li class="expect-step">
+              <span class="expect-number">1</span>
+              <div>
+                <p class="expect-title">Review within 4 business hours</p>
+                <p class="expect-body">John reads your project details and prepares relevant questions.</p>
+              </div>
+            </li>
+            <li class="expect-step">
+              <span class="expect-number">2</span>
+              <div>
+                <p class="expect-title">Direct call or email from John</p>
+                <p class="expect-body">He'll discuss scope, timeline, and any constraints specific to your facility.</p>
+              </div>
+            </li>
+            <li class="expect-step">
+              <span class="expect-number">3</span>
+              <div>
+                <p class="expect-title">Free site assessment (if needed)</p>
+                <p class="expect-body">For larger or more complex projects, we schedule a no-cost on-site walkthrough before issuing a final quote.</p>
+              </div>
+            </li>
+          </ol>
+
+          <!-- CTAs -->
+          <div class="cta-row">
+            <a href="/" class="btn-outline">Back to Home</a>
+            <a href="/services/pallet-rack-installation/" class="btn-outline">View Our Services</a>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside>
+
+          <!-- Need it faster? -->
+          <div class="card" style="border-left: 3px solid var(--color-primary); margin-bottom: 24px;">
+            <p class="text-label-sm" style="color: var(--color-on-surface-muted); margin-bottom: 14px;">Need a faster response?</p>
+            <p style="font-size: 14px; color: var(--color-on-surface-muted); margin-bottom: 16px; line-height: 1.6;">
+              For urgent projects or emergency rack repairs, call John directly — he picks up.
+            </p>
+            <a
+              href="tel:+16303637251"
+              style="display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 12px;"
+            >
+              <span class="contact-icon-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.73 8.81 19.79 19.79 0 01.67 2.18 2 2 0 012.68 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.07 6.07l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-primary);">630-363-7251</span>
+            </a>
+            <a
+              href="mailto:jk@redlineinstallers.com"
+              style="font-size: 14px; color: var(--color-on-surface-muted); text-decoration: none; display: block;"
+            >
+              jk@redlineinstallers.com
+            </a>
+          </div>
+
+          <!-- Services quick links -->
+          <div class="card">
+            <p class="text-label-sm" style="color: var(--color-on-surface-muted); margin-bottom: 16px;">Our services</p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px;">
+              {[
+                { label: 'Pallet Rack Installation', href: '/services/pallet-rack-installation/' },
+                { label: 'Warehouse Relocation', href: '/services/warehouse-relocation/' },
+                { label: 'Rack Repair & Modifications', href: '/services/rack-repair-modifications/' },
+                { label: 'Mezzanine Installation', href: '/services/mezzanine-installation/' },
+                { label: 'Conveyor Systems', href: '/services/conveyor-systems/' },
+                { label: 'Tear-Down & Reinstallation', href: '/services/tear-down-reinstallation/' },
+                { label: 'Material Handling Systems', href: '/services/material-handling-systems/' },
+              ].map((s) => (
+                <li>
+                  <a href={s.href} class="service-link">{s.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .thankyou-layout {
+    display: grid;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .thankyou-layout {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+
+  /* Checkmark circle */
+  .check-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+  }
+
+  /* Expect steps */
+  .expect-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .expect-number {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .expect-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-on-surface);
+    margin-bottom: 3px;
+  }
+
+  .expect-body {
+    font-size: 14px;
+    color: var(--color-on-surface-muted);
+    line-height: 1.5;
+  }
+
+  /* CTA row */
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Contact icon small */
+  .contact-icon-sm {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    background-color: var(--color-steel-100);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-steel-700);
+  }
+
+  /* Service links */
+  .service-link {
+    display: block;
+    padding: 9px 10px;
+    font-size: 14px;
+    color: var(--color-on-surface);
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+
+  .service-link:hover {
+    background-color: var(--color-steel-100);
+    color: var(--color-primary);
+  }
+</style>

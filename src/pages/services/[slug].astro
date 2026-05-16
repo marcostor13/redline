@@ -1,0 +1,222 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTASection from '../../components/CTASection.astro';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const allServices = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const related = allServices.filter((s) => s.id !== entry.id).slice(0, 3);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: entry.data.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: entry.data.title,
+  description: entry.data.description,
+  provider: {
+    '@type': 'LocalBusiness',
+    '@id': 'https://redlineinstallers.com/#business',
+    name: 'Redline Installers LLC',
+  },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  url: `https://redlineinstallers.com/services/${entry.id}/`,
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://redlineinstallers.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://redlineinstallers.com/services/' },
+    { '@type': 'ListItem', position: 3, name: entry.data.title, item: `https://redlineinstallers.com/services/${entry.id}/` },
+  ],
+};
+---
+
+<BaseLayout
+  title={entry.data.metaTitle}
+  description={entry.data.metaDescription}
+  canonical={`https://redlineinstallers.com/services/${entry.id}/`}
+  schema={[faqSchema, serviceSchema, breadcrumbSchema]}
+>
+
+  <Hero
+    headline={entry.data.title}
+    subheadline={entry.data.description}
+    compact={true}
+  />
+
+  <!-- Breadcrumb -->
+  <nav class="py-3 border-b" style="background-color: var(--color-surface-alt); border-color: var(--color-border);" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="flex items-center gap-2 text-sm" style="color: var(--color-on-surface-muted);">
+        <li><a href="/" style="color: var(--color-on-surface-muted);" class="hover:underline">Home</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/services/" style="color: var(--color-on-surface-muted);" class="hover:underline">Services</a></li>
+        <li aria-hidden="true">/</li>
+        <li style="color: var(--color-on-surface);" aria-current="page">{entry.data.title}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <section class="py-16" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+        <!-- Body content -->
+        <div class="lg:col-span-2">
+          <div class="prose-content">
+            <Content />
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside>
+          <div class="card sticky top-8">
+            <h2 class="text-headline-md font-display mb-4" style="color: var(--color-on-surface);">
+              Get a Free Quote
+            </h2>
+            <p class="text-body-md mb-6" style="color: var(--color-on-surface-muted);">
+              Tell us about your project. We respond within 4 business hours.
+            </p>
+            <a href="/quote/" class="btn-primary w-full text-center block mb-4">
+              Request a Free Quote
+            </a>
+            <a href="tel:+16303637251" class="btn-outline w-full text-center block">
+              Call 630-363-7251
+            </a>
+            <div class="mt-6 pt-6 border-t" style="border-color: var(--color-border);">
+              <div class="text-label-sm mb-1" style="color: var(--color-on-surface-muted);">Project keywords</div>
+              <div class="flex flex-wrap gap-2">
+                {entry.data.keywords.map((kw) => (
+                  <span
+                    class="text-xs px-2 py-1 rounded"
+                    style="background-color: var(--color-steel-100); color: var(--color-steel-700);"
+                  >
+                    {kw}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16" style="background-color: var(--color-steel-50);">
+    <div class="container">
+      <div class="max-w-3xl">
+        <h2 class="text-headline-lg font-display mb-10" style="color: var(--color-on-surface);">
+          Frequently Asked Questions
+        </h2>
+        <div class="flex flex-col gap-6">
+          {entry.data.faq.map((item) => (
+            <div class="card">
+              <h3 class="text-headline-md font-display mb-3" style="color: var(--color-on-surface);">
+                {item.question}
+              </h3>
+              <p class="text-body-md" style="color: var(--color-on-surface-muted);">
+                {item.answer}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="py-16" style="background-color: var(--color-surface);">
+    <div class="container">
+      <h2 class="text-headline-lg font-display mb-8" style="color: var(--color-on-surface);">
+        Related Services
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {related.map((svc) => (
+          <ServiceCard
+            title={svc.data.title}
+            description={svc.data.shortDesc}
+            href={`/services/${svc.id}/`}
+            icon={svc.data.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+
+</BaseLayout>
+
+<style>
+  .font-display { font-family: var(--font-display); }
+
+  .prose-content :global(h2) {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-on-surface);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-content :global(h3) {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-on-surface);
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose-content :global(p) {
+    color: var(--color-on-surface-muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .prose-content :global(ul),
+  .prose-content :global(ol) {
+    color: var(--color-on-surface-muted);
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-content :global(li) {
+    margin-bottom: 0.5rem;
+    line-height: 1.75;
+  }
+
+  .prose-content :global(strong) {
+    color: var(--color-on-surface);
+    font-weight: 600;
+  }
+</style>

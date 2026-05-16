@@ -1,0 +1,289 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://redlineinstallers.com/#business',
+  name: 'Redline Installers LLC',
+  description: 'Warehouse and pallet rack installation specialists serving Illinois, Midwest, and nationwide.',
+  url: 'https://redlineinstallers.com',
+  telephone: '+1-630-363-7251',
+  email: 'jk@redlineinstallers.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '980 N Michigan Ave Ste 1090 PMB 357073',
+    addressLocality: 'Chicago',
+    addressRegion: 'IL',
+    postalCode: '60611-4521',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '41.9002',
+    longitude: '-87.6237',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '18:00',
+    },
+  ],
+  areaServed: { '@type': 'Country', name: 'United States' },
+  priceRange: '$$',
+};
+
+const projectTypes = [
+  'Pallet Rack Installation',
+  'Warehouse Relocation',
+  'Rack Repair & Modifications',
+  'Mezzanine Installation',
+  'Conveyor Systems',
+  'Tear-Down & Reinstallation',
+  'Material Handling Systems',
+  'Rack Safety Inspection',
+  'Other / Not Sure',
+];
+---
+
+<BaseLayout
+  title="Contact Redline Installers — Chicago, IL | Pallet Rack Installation Specialists"
+  description="Contact Redline Installers LLC for pallet rack installation, warehouse relocation, and material handling projects. Chicago, IL. Call 630-363-7251 or request a quote online."
+  canonical="https://redlineinstallers.com/contact/"
+  schema={schema}
+>
+
+  <Hero
+    headline="Contact Redline Installers — Chicago, IL"
+    subheadline="Free quotes. 4-hour response time. John Korabik reviews every inquiry personally. For urgent rack safety concerns, call directly."
+    compact={true}
+  />
+
+  <section class="py-20" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+
+        <!-- Contact Info Sidebar -->
+        <div class="lg:col-span-2">
+          <div class="card card-featured mb-6">
+            <h2 class="text-headline-md mb-6" style="color: var(--color-on-surface); font-family: var(--font-display);">
+              Contact Information
+            </h2>
+
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <div class="text-label-sm mb-1" style="color: var(--color-primary);">Phone</div>
+                <a href="tel:+16303637251" class="text-body-lg font-semibold" style="color: var(--color-on-surface); text-decoration: none;">
+                  630-363-7251
+                </a>
+                <div class="text-body-md mt-1" style="color: var(--color-on-surface-muted);">
+                  For urgent rack safety concerns, call directly.
+                </div>
+              </div>
+
+              <div>
+                <div class="text-label-sm mb-1" style="color: var(--color-primary);">Email</div>
+                <a href="mailto:jk@redlineinstallers.com" class="text-body-md font-semibold" style="color: var(--color-on-surface); text-decoration: none; word-break: break-all;">
+                  jk@redlineinstallers.com
+                </a>
+              </div>
+
+              <div>
+                <div class="text-label-sm mb-1" style="color: var(--color-primary);">Business Hours</div>
+                <div class="text-body-md" style="color: var(--color-on-surface);">Monday – Friday</div>
+                <div class="text-body-md" style="color: var(--color-on-surface-muted);">7:00 AM – 6:00 PM CT</div>
+              </div>
+
+              <div>
+                <div class="text-label-sm mb-1" style="color: var(--color-primary);">Mailing Address</div>
+                <address class="text-body-md not-italic" style="color: var(--color-on-surface-muted); line-height: 1.7;">
+                  Redline Installers LLC<br />
+                  980 N Michigan Ave Ste 1090<br />
+                  PMB 357073<br />
+                  Chicago, IL 60611-4521
+                </address>
+              </div>
+
+              <div>
+                <div class="text-label-sm mb-1" style="color: var(--color-primary);">Quote Response</div>
+                <div class="text-body-md font-semibold" style="color: var(--color-on-surface);">Within 4 business hours</div>
+                <div class="text-body-md" style="color: var(--color-on-surface-muted);">Monday through Friday, 7am – 6pm CT</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Contact -->
+          <div class="flex flex-col gap-3">
+            <a href="tel:+16303637251" class="btn-primary text-center">
+              Call 630-363-7251
+            </a>
+            <a href="mailto:jk@redlineinstallers.com" class="btn-outline text-center">
+              Email Us Directly
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-3">
+          <div class="card">
+            <h2 class="text-headline-md mb-2" style="color: var(--color-on-surface); font-family: var(--font-display);">
+              Request a Free Quote
+            </h2>
+            <p class="text-body-md mb-8" style="color: var(--color-on-surface-muted);">
+              Tell us about your project and we'll follow up within 4 business hours with a detailed estimate.
+            </p>
+
+            <form
+              method="POST"
+              action="https://formsubmit.co/jk@redlineinstallers.com"
+              class="grid grid-cols-1 gap-6"
+            >
+              <!-- Formsubmit hidden fields -->
+              <input type="hidden" name="_subject" value="New Quote Request — Redline Installers" />
+              <input type="hidden" name="_next" value="https://redlineinstallers.com/contact/?sent=1" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" style="display:none;" tabindex="-1" autocomplete="off" />
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="name" class="field-label">Full Name *</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="field-input"
+                    placeholder="John Smith"
+                    required
+                    autocomplete="name"
+                  />
+                </div>
+                <div>
+                  <label for="company" class="field-label">Company Name</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    class="field-input"
+                    placeholder="Acme Distribution LLC"
+                    autocomplete="organization"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="email" class="field-label">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="field-input"
+                    placeholder="you@company.com"
+                    required
+                    autocomplete="email"
+                  />
+                </div>
+                <div>
+                  <label for="phone" class="field-label">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="field-input"
+                    placeholder="630-555-0100"
+                    autocomplete="tel"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="project_type" class="field-label">Project Type *</label>
+                <select id="project_type" name="project_type" class="field-input" required>
+                  <option value="" disabled selected>Select a service...</option>
+                  {projectTypes.map((type) => (
+                    <option value={type}>{type}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label for="location" class="field-label">Project Location</label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  class="field-input"
+                  placeholder="Chicago, IL / City, State"
+                />
+              </div>
+
+              <div>
+                <label for="message" class="field-label">Project Details *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="field-input"
+                  rows="5"
+                  placeholder="Describe your project — square footage, number of bays, current rack condition, timeline, any special requirements..."
+                  required
+                  style="resize: vertical; min-height: 120px;"
+                ></textarea>
+              </div>
+
+              <div>
+                <button type="submit" class="btn-primary w-full">
+                  Send Request — Free Quote
+                </button>
+                <p class="text-body-md mt-3 text-center" style="color: var(--color-on-surface-muted);">
+                  We respond within 4 business hours. No obligation.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="py-12" style="background-color: var(--color-steel-100);">
+    <div class="container">
+      <div class="max-w-2xl mb-8">
+        <span class="text-label-sm block mb-2" style="color: var(--color-primary);">Location</span>
+        <h2 class="text-headline-md" style="color: var(--color-on-surface); font-family: var(--font-display);">
+          Based in Chicago, IL
+        </h2>
+        <p class="text-body-md mt-2" style="color: var(--color-on-surface-muted);">
+          980 N Michigan Ave Ste 1090, Chicago, IL 60611-4521. Serving Illinois, the Midwest, and all 50 states.
+        </p>
+      </div>
+      <div class="rounded-lg overflow-hidden" style="border: 1px solid var(--color-border); height: 360px;">
+        <iframe
+          title="Redline Installers — Chicago, IL location map"
+          width="100%"
+          height="100%"
+          style="border: 0;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-placeholder&q=980+N+Michigan+Ave,+Chicago,+IL+60611"
+          aria-label="Map showing Redline Installers location at 980 N Michigan Ave, Chicago, IL"
+        ></iframe>
+      </div>
+      <p class="text-body-md mt-3" style="color: var(--color-on-surface-muted);">
+        <strong>Note:</strong> We are a mobile service business. We travel to your facility — you do not need to visit our office. All consultations are conducted on-site at your warehouse.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  select.field-input {
+    appearance: auto;
+    cursor: pointer;
+  }
+</style>
