@@ -101,17 +101,31 @@ The frontend Astro site has no server-side secrets. Any `PUBLIC_*` variable is i
 
 ## 6. Site 2: Admin (Next.js)
 
+> **Critical:** Use **Base directory** (under Build settings), NOT the monorepo "Package path" feature.
+> When Base directory is set to `admin`, Netlify reads `admin/netlify.toml` first and uses it exclusively.
+> If you use Package path / monorepo mode instead, Netlify reads the root `netlify.toml` and the build will fail with a wrong publish directory error.
+
 ### Create the Netlify site
 
 1. In Netlify dashboard, click **Add new site > Import an existing project**.
 2. Connect to GitHub and select the same `redline` repository.
 3. On the build settings screen:
-   - **Base directory**: `admin`
+   - **Base directory**: `admin` — type this in the "Base directory" field under Build settings
    - **Build command**: `npm run build`
    - **Publish directory**: `.next`
    - **Node version**: will be picked up from `admin/netlify.toml`
 4. Netlify will detect `@netlify/plugin-nextjs` from `admin/netlify.toml` and install it automatically.
 5. Click **Deploy site**.
+
+### If the site was already created with wrong settings
+
+If the site was created with monorepo Package path instead of Base directory:
+
+1. Go to **Site configuration → Build & deploy → Build settings**
+2. Set **Base directory** to `admin`
+3. Set **Publish directory** to `.next`
+4. Set **Build command** to `npm run build`
+5. Click **Save**, then trigger a new deploy from **Deploys → Trigger deploy**
 
 ### Environment variables
 
