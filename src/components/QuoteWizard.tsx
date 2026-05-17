@@ -363,8 +363,8 @@ export function QuoteWizard() {
     setSubmitting(true);
     setSubmitError('');
     try {
-      const devBase = (import.meta as { env?: { PUBLIC_API_URL?: string } }).env?.PUBLIC_API_URL;
-      const endpoint = devBase ? `${devBase}/api/leads` : '/admin/api/leads';
+      const apiBase = (import.meta as { env?: { PUBLIC_ADMIN_URL?: string } }).env?.PUBLIC_ADMIN_URL ?? '';
+      const endpoint = `${apiBase}/api/leads`;
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

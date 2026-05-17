@@ -6,18 +6,6 @@
   NODE_VERSION = "22"
 
 [[redirects]]
-  from = "/admin"
-  to = "https:///redlineinstallers.netlify.app/admin"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/admin/*"
-  to = "https:///redlineinstallers.netlify.app/admin/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/*"
   to = "/404"
   status = 404

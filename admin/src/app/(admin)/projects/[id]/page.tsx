@@ -37,7 +37,7 @@ export default function EditProjectPage() {
   });
 
   useEffect(() => {
-    fetch(`/admin/api/projects/${id}`)
+    fetch(`/api/projects/${id}`)
       .then((r) => r.json())
       .then((data: IProject) => {
         setFields({
@@ -73,7 +73,7 @@ export default function EditProjectPage() {
       tags: tags.split(',').map((t) => t.trim()).filter(Boolean),
     };
 
-    const res = await fetch(`/admin/api/projects/${id}`, {
+    const res = await fetch(`/api/projects/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

@@ -17,7 +17,7 @@ export default function LeadDetailPage() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    fetch(`/admin/api/leads/${id}`)
+    fetch(`/api/leads/${id}`)
       .then((r) => r.json())
       .then((data) => {
         setLead(data);
@@ -28,7 +28,7 @@ export default function LeadDetailPage() {
 
   async function save() {
     setSaving(true);
-    await fetch(`/admin/api/leads/${id}`, {
+    await fetch(`/api/leads/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status, adminNotes }),
@@ -39,7 +39,7 @@ export default function LeadDetailPage() {
   async function deleteLead() {
     if (!confirm('Delete this lead? This cannot be undone.')) return;
     setDeleting(true);
-    await fetch(`/admin/api/leads/${id}`, { method: 'DELETE' });
+    await fetch(`/api/leads/${id}`, { method: 'DELETE' });
     router.push('/leads');
     router.refresh();
   }

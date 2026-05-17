@@ -65,7 +65,7 @@ export default function NewProjectPage() {
       tags: tags.split(',').map((t) => t.trim()).filter(Boolean),
     };
 
-    const res = await fetch('/admin/api/projects', {
+    const res = await fetch('/api/projects', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
