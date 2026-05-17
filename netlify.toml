@@ -6,6 +6,18 @@
   NODE_VERSION = "22"
 
 [[redirects]]
+  from = "/admin"
+  to = "https://REPLACE_WITH_ADMIN_NETLIFY_URL/admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "https://REPLACE_WITH_ADMIN_NETLIFY_URL/admin/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/404"
   status = 404

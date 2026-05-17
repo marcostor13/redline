@@ -9,13 +9,13 @@ export default function ProjectsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/projects')
+    fetch('/admin/api/projects')
       .then((r) => r.json())
       .then((data) => { setProjects(data); setLoading(false); });
   }, []);
 
   async function togglePublished(id: string, published: boolean) {
-    await fetch(`/api/projects/${id}`, {
+    await fetch(`/admin/api/projects/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ published: !published }),
@@ -25,7 +25,7 @@ export default function ProjectsPage() {
 
   async function deleteProject(id: string) {
     if (!confirm('Delete this project?')) return;
-    await fetch(`/api/projects/${id}`, { method: 'DELETE' });
+    await fetch(`/admin/api/projects/${id}`, { method: 'DELETE' });
     setProjects((prev) => prev.filter((p) => p._id !== id));
   }
 
