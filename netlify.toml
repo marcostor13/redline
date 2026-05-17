@@ -7,13 +7,13 @@
 
 [[redirects]]
   from = "/admin"
-  to = "https://REPLACE_WITH_ADMIN_NETLIFY_URL/admin"
+  to = "https:///redlineinstallers.netlify.app/admin"
   status = 200
   force = true
 
 [[redirects]]
   from = "/admin/*"
-  to = "https://REPLACE_WITH_ADMIN_NETLIFY_URL/admin/:splat"
+  to = "https:///redlineinstallers.netlify.app/admin/:splat"
   status = 200
   force = true
 
